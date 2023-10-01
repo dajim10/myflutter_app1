@@ -7,12 +7,19 @@ pipeline {
                 git branch: "main", url: 'https://github.com/dajim10/myflutter_app1.git'
             }
         }
-        stage('Install') {
+
+         stage('Install Dependencies') {
             steps {
-                sh 'flutter pub get'
+                // Install Flutter and Dart dependencies
+                script {
+                    def flutterHome = tool name: 'Flutter', type: 'Tool'
+                    def dartHome = tool name: 'Dart', type: 'Tool'
+                    env.PATH = "${flutterHome}:${dartHome}:${env.PATH}"
+                    sh 'flutter pub get'
+                }
             }
         }
-        
+
         stage('TEST') {
             steps {
                 sh 'flutter test'
