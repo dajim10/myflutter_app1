@@ -7,6 +7,12 @@ pipeline {
                 git branch: "main", url: 'https://github.com/dajim10/myflutter_app1.git'
             }
         }
+        stage('Install') {
+            steps {
+                sh 'flutter pub get'
+            }
+        }
+        
         stage('TEST') {
             steps {
                 sh 'flutter test'
