@@ -1,19 +1,23 @@
 pipeline {
     agent any
     stages {
-        stage('Build') {
+       stages {
+        stage('GIT PULL') {
             steps {
-                echo 'Building..'
+                git branch: "main", url: 'https://github.com/dajim10/myflutter_app1.git'
             }
         }
-        stage('Test') {
+        stage('TEST') {
             steps {
-                echo 'Testing..'
+                sh 'flutter test'
             }
         }
-        stage('Deploy') {
+        stage('BUILD') {
             steps {
-                echo 'Deploying....'
+                sh '''
+                  #!/bin/sh
+                  flutter build apk --debug
+                  '''
             }
         }
     }
