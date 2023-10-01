@@ -8,15 +8,22 @@ pipeline {
             }
         }
 
-         stage('Install Dependencies') {
+        stage('Install Flutter') {
+            steps {
+                // Download and install Flutter within the Jenkins workspace
+                sh '''
+                    mkdir -p ~/flutter
+                    wget https://storage.googleapis.com/flutter_infra/releases/stable/linux/flutter_linux_2.2.3-stable.tar.xz -O ~/flutter/flutter.tar.xz
+                    tar xf ~/flutter/flutter.tar.xz -C ~/flutter/
+                    export PATH=$PATH:~/flutter/flutter/bin
+                '''
+            }
+        }
+
+        stage('Install Dependencies') {
             steps {
                 // Install Flutter and Dart dependencies
-                script {
-                    def flutterHome = tool name: 'Flutter', type: 'Tool'
-                    def dartHome = tool name: 'Dart', type: 'Tool'
-                    env.PATH = "${flutterHome}:${dartHome}:${env.PATH}"
-                    sh 'flutter pub get'
-                }
+                sh 'flutter pub get'
             }
         }
 
