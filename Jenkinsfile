@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        PATH = "$PATH:~/development/flutter/bin"
+        PATH = "$PATH:/var/jenkins_home"
     }
 
     stages {
@@ -13,8 +13,8 @@ pipeline {
 
         stage('Print PATH') {
             steps {
-                
-                    print "${env.PATH}}"
+                sh 'echo $PATH'
+                sh 'pwd'
 
                 // ดาวโหลดและ install Flutter 
                 // sh '''
@@ -34,11 +34,11 @@ pipeline {
         //     }
         // }
 
-        stage('Test Flutter doctor') { 
-            steps {
-                sh 'flutter doctor'
-            }
-        }
+        // stage('Test Flutter doctor') { 
+        //     steps {
+        //         sh 'flutter doctor'
+        //     }
+        // }
 
         // stage('BUILD') {
         //     steps {
