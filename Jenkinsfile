@@ -2,11 +2,11 @@ pipeline {
     agent any
 
     stages {
-        stage('GIT PULL') {
-            steps {
-                git branch: "main", url: 'https://github.com/dajim10/myflutter_app1.git'
-            }
-        }
+        // stage('GIT PULL') {
+        //     steps {
+        //         git branch: "main", url: 'https://github.com/dajim10/myflutter_app1.git'
+        //     }
+        // }
 
         stage('Install Flutter') {
             steps {
