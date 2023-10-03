@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        PATH = "$PATH:/var/jenkins_home"
+        PATH = "$PATH:/var/jenkins_home/flutter/flutter/bin"
     }
 
     stages {
@@ -13,19 +13,15 @@ pipeline {
 
         stage('Install flutter') {
             steps {
-               
-                // ดาวโหลดและ install Flutter 
+                // Download and install Flutter
                 sh '''
-                    pwd
-                    mkdir - p ~/flutter
-                    pwd
+                    mkdir -p ~/flutter
                     curl -o ~/flutter/flutter.tar.xz https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.13.6-stable.tar.xz
                     tar xf ~/flutter/flutter.tar.xz -C ~/flutter/
                     export PATH=$PATH:~/flutter/flutter/bin
                 '''
             }
-}
-
+        }
 
         stage('Install Dependencies') {
             steps {
@@ -42,9 +38,8 @@ pipeline {
 
         stage('BUILD') {
             steps {
-                sh 'flutter build web --debug'
+                sh 'flutter build web --debug --web-renderer canvaskit'
             }
         }
-       
     }
 }
