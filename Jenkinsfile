@@ -13,7 +13,9 @@ pipeline {
 
         stage('Install flutter') {
             steps {
-                sh 'sudo snap install flutter --classic'
+                sh 'mkdir -p ~/flutter'
+                sh 'cd ~/flutter'
+                sh 'snap install flutter --classic'
                 sh 'echo $PATH'
                 sh 'pwd'
 
