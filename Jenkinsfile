@@ -36,7 +36,7 @@ pipeline {
 
         stage('BUILD') {
             steps {
-                sh 'flutter build apk --debug'
+                sh 'flutter build web --debug'
             }
         }
        
