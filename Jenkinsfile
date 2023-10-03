@@ -17,9 +17,10 @@ pipeline {
                 // ดาวโหลดและ install Flutter 
                 sh '''
                     pwd
-                    mkdir -p ~/flutter
-                    curl -o ~/flutter/flutter.tar.xz https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.13.6-stable.tar.xz
-                    tar xf ~/flutter/flutter.tar.xz -C ~/flutter/
+                    mkdir flutter
+                    cd flutter
+                    curl -o /flutter/flutter.tar.xz https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.13.6-stable.tar.xz
+                    tar xf /flutter/flutter.tar.xz -C ~/flutter/
                     export PATH=$PATH:~/flutter/flutter/bin
                 '''
             }
