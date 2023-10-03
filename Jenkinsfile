@@ -13,44 +13,37 @@ pipeline {
 
         stage('Install flutter') {
             steps {
-                sh 'mkdir -p ~/flutter'
-                sh 'cd ~/flutter'
-                sh 'pwd'               
-                curl -o ~/flutter/flutter.tar.xz https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.13.6-stable.tar.xz
-                tar xf ~/flutter/flutter.tar.xz -C ~/flutter/
-                export PATH=$PATH:~/flutter/flutter/bin
-
-
-
-                // ดาวโหลดและ install Flutter 
-                // sh '''
-                //     mkdir -p ~/flutter
-                //     curl -o ~/flutter/flutter.tar.xz https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.13.6-stable.tar.xz
-                //     tar xf ~/flutter/flutter.tar.xz -C ~/flutter/
-                //     export PATH=$PATH:~/flutter/flutter/bin
-                // '''
+               
+                ดาวโหลดและ install Flutter 
+                sh '''
+                    cd ~/var/jenkins_home
+                    mkdir -p ~/flutter
+                    curl -o ~/flutter/flutter.tar.xz https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.13.6-stable.tar.xz
+                    tar xf ~/flutter/flutter.tar.xz -C ~/flutter/
+                    export PATH=$PATH:~/flutter/flutter/bin
+                '''
             }
 }
 
 
-        // stage('Install Dependencies') {
-        //     steps {
-        //         // Install Flutter and Dart dependencies
-        //         sh 'flutter pub get'
-        //     }
-        // }
+        stage('Install Dependencies') {
+            steps {
+                // Install Flutter and Dart dependencies
+                sh 'flutter pub get'
+            }
+        }
 
-        // stage('Test Flutter doctor') { 
-        //     steps {
-        //         sh 'flutter doctor'
-        //     }
-        // }
+        stage('Test Flutter doctor') { 
+            steps {
+                sh 'flutter doctor'
+            }
+        }
 
-        // stage('BUILD') {
-        //     steps {
-        //         sh 'flutter build web --debug'
-        //     }
-        // }
+        stage('BUILD') {
+            steps {
+                sh 'flutter build web --debug'
+            }
+        }
        
     }
 }
