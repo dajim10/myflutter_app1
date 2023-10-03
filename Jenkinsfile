@@ -11,7 +11,7 @@ pipeline {
         //     }
         // }
 
-        stage('Install Flutter') {
+        stage('Print PATH') {
             steps {
                 
                     print "${env.PATH}}"
@@ -34,17 +34,17 @@ pipeline {
         //     }
         // }
 
-        stage('TEST') {
+        stage('Test Flutter doctor') { 
             steps {
                 sh 'flutter doctor'
             }
         }
 
-        stage('BUILD') {
-            steps {
-                sh 'flutter build web --debug'
-            }
-        }
+        // stage('BUILD') {
+        //     steps {
+        //         sh 'flutter build web --debug'
+        //     }
+        // }
        
     }
 }
