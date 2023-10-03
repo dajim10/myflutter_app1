@@ -14,7 +14,7 @@ pipeline {
         stage('Install flutter') {
             steps {
                
-                ดาวโหลดและ install Flutter 
+                // ดาวโหลดและ install Flutter 
                 sh '''
                     cd ~/var/jenkins_home
                     mkdir -p ~/flutter
